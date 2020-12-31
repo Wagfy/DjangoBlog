@@ -15,6 +15,8 @@
 
 from django.urls import path
 from django.views.decorators.cache import cache_page
+from django.views.generic import RedirectView
+
 from . import views
 from haystack.forms import ModelSearchForm
 from haystack.query import SearchQuerySet
@@ -26,6 +28,10 @@ urlpatterns = [
         r'',
         views.IndexView.as_view(),
         name='index'),
+    path(
+        r'favicon.ico',
+        RedirectView.as_view(url='static/blog/img/favicon.ico')
+        ),
     path(
         r'page/<int:page>/',
         views.IndexView.as_view(),
